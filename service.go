@@ -28,4 +28,6 @@ func NewServer() *http.Server {
 func initRoutes(mx *mux.Router, f *render.Render) {
 	mx.HandleFunc("/ping", pingHandler(f)).Methods("GET")
 	mx.HandleFunc("/sensor", sensorHandler(f)).Methods("POST")
+	mx.PathPrefix("/").
+	  Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static"))))
 }
