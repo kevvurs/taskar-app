@@ -1,12 +1,14 @@
 package main
 
 import (
+  "net/http"
+  "time"
   "github.com/gorilla/mux"
   "github.com/unrolled/render"
 	"github.com/urfave/negroni"
 )
 
-func NewServer() *negroni.Negroni {
+func NewServer() *http.Server {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
 	})
@@ -14,7 +16,13 @@ func NewServer() *negroni.Negroni {
 	mx := mux.NewRouter()
 	initRoutes(mx, formatter)
 	n.UseHandler(mx)
-	return n
+	return &http.Server{
+		Addr:            ":3027",
+		Handler:         n,
+		ReadTimeout:     10 *time.Second,
+		WriteTimeout:    10 *time.Second,
+		MaxHeaderBytes:  1 << 20,
+	}
 }
 
 func initRoutes(mx *mux.Router, f *render.Render) {
