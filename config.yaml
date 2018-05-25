@@ -4,3 +4,6 @@ query:
   insert-record: >
     INSERT INTO SensorContext(ReportTime, SensorName, SensorValue)
     VALUES(?, ?, ?)
+  select-by-time: >
+    SELECT * FROM SensorContext
+    WHERE ReportTime >= ?
