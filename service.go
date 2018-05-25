@@ -17,11 +17,12 @@ func NewServer() *http.Server {
 	initRoutes(mx, formatter)
 	n.UseHandler(mx)
 	return &http.Server{
-		Addr:            ":3027",
-		Handler:         n,
-		ReadTimeout:     10 *time.Second,
-		WriteTimeout:    10 *time.Second,
-		MaxHeaderBytes:  1 << 20,
+		Addr:               ":3027",
+		Handler:            n,
+		ReadTimeout:        10 *time.Second,
+		ReadHeaderTimeout:  10 *time.Second,
+		WriteTimeout:       10 *time.Second,
+		MaxHeaderBytes:     1 << 20,
 	}
 }
 

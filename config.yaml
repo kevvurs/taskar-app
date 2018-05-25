@@ -1,0 +1,6 @@
+data-source: shift:F4rg0*@tcp(localhost:3306)/TaskarDataStore?parseTime=true
+date-layout: 2006-1-2 15:4:5
+query:
+  insert-record: >
+    INSERT INTO SensorContext(ReportTime, SensorName, SensorValue)
+    VALUES(?, ?, ?)
