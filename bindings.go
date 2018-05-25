@@ -13,9 +13,9 @@ type DeviceEvent struct {
 }
 
 type SensorRecord struct {
-	ReportTime   time.Time
-	SensorName   string
-	SensorValue  float64
+	ReportTime   time.Time  `json:"rt"`
+	SensorName   string     `json:"sn"`
+	SensorValue  float64    `json:"sv"`
 }
 
 type props struct {
@@ -26,4 +26,5 @@ type props struct {
 
 type queryProp struct {
 	InsertRecord  string  `yaml:"insert-record"`
+	SelectByTime  string  `yaml:"select-by-time"`
 }
